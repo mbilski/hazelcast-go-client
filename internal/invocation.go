@@ -360,8 +360,9 @@ func (is *invocationServiceImpl) registerInvocation(invocation *invocation) {
 
 func (is *invocationServiceImpl) unRegisterInvocation(correlationID int64) (*invocation, bool) {
 	is.invocationsLock.Lock()
-	defer is.invocationsLock.Unlock()
-	return is.unRegisterInvocationWithoutLock(correlationID)
+	in, ok := is.unRegisterInvocationWithoutLock(correlationID)
+	is.invocationsLock.Unlock()
+	return in, ok
 }
 
 func (is *invocationServiceImpl) unRegisterInvocationWithoutLock(correlationID int64) (*invocation, bool) {
