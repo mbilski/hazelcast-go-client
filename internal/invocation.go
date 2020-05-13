@@ -27,6 +27,7 @@ import (
 	"github.com/mbilski/hazelcast-go-client/internal/proto"
 	"github.com/mbilski/hazelcast-go-client/internal/proto/bufutil"
 	"github.com/mbilski/hazelcast-go-client/serialization"
+	"github.com/sasha-s/go-deadlock"
 )
 
 type invocation struct {
@@ -208,7 +209,7 @@ func (is *invocationServiceImpl) handleResponse(response interface{}) {
 type invocationServiceImpl struct {
 	client            *HazelcastClient
 	nextCorrelation   int64
-	invocationsLock   sync.Mutex
+	invocationsLock   deadlock.Mutex
 	invocations       map[int64]*invocation
 	invocationTimeout time.Duration
 	retryPause        time.Duration
