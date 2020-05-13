@@ -20,7 +20,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/hazelcast/hazelcast-go-client/serialization"
+	"github.com/mbilski/hazelcast-go-client/serialization"
 	"github.com/stretchr/testify/require"
 )
 

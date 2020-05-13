@@ -19,8 +19,8 @@ import (
 
 	"reflect"
 
-	"github.com/hazelcast/hazelcast-go-client/core/aggregator"
-	"github.com/hazelcast/hazelcast-go-client/core/predicate"
+	"github.com/mbilski/hazelcast-go-client/core/aggregator"
+	"github.com/mbilski/hazelcast-go-client/core/predicate"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

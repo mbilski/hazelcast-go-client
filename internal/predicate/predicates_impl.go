@@ -15,7 +15,7 @@
 package predicate
 
 import (
-	"github.com/hazelcast/hazelcast-go-client/serialization"
+	"github.com/mbilski/hazelcast-go-client/serialization"
 )
 
 type predicate struct {

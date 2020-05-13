@@ -21,12 +21,12 @@ import (
 
 	"sync"
 
-	"github.com/hazelcast/hazelcast-go-client/config/property"
-	"github.com/hazelcast/hazelcast-go-client/core"
-	"github.com/hazelcast/hazelcast-go-client/core/logger"
-	"github.com/hazelcast/hazelcast-go-client/internal/proto"
-	"github.com/hazelcast/hazelcast-go-client/internal/proto/bufutil"
-	"github.com/hazelcast/hazelcast-go-client/serialization"
+	"github.com/mbilski/hazelcast-go-client/config/property"
+	"github.com/mbilski/hazelcast-go-client/core"
+	"github.com/mbilski/hazelcast-go-client/core/logger"
+	"github.com/mbilski/hazelcast-go-client/internal/proto"
+	"github.com/mbilski/hazelcast-go-client/internal/proto/bufutil"
+	"github.com/mbilski/hazelcast-go-client/serialization"
 )
 
 type invocation struct {

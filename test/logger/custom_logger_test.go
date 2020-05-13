@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"github.com/hazelcast/hazelcast-go-client"
-	"github.com/hazelcast/hazelcast-go-client/test/testutil"
+	"github.com/mbilski/hazelcast-go-client"
+	"github.com/mbilski/hazelcast-go-client/test/testutil"
 	"github.com/stretchr/testify/assert"
 )
 

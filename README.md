@@ -64,8 +64,8 @@
     * [7.5.2. Distributed Data Structure Events](#752-distributed-data-structure-events)
       * [7.5.2.1. Map Listener](#7521-map-listener)
       * [7.5.2.2. Entry Listener](#7522-entry-listener)
-      * [7.5.2.3. Item Listener](#7523-item-listener)           
-      * [7.5.2.4. Message Listener](#7524-message-listener) 
+      * [7.5.2.3. Item Listener](#7523-item-listener)
+      * [7.5.2.4. Message Listener](#7524-message-listener)
   * [7.6. Distributed Computing](#76-distributed-computing)
     * [7.6.1. Using EntryProcessor](#761-using-entryprocessor)
         * [Processing Entries](#processing-entries)
@@ -76,9 +76,9 @@
       * [7.7.1.3. Querying with SQL](#7713-querying-with-sql)
         * [Supported SQL Syntax](#supported-sql-syntax)
         * [Querying Examples with Predicates](#querying-examples-with-predicates)
-      * [7.7.1.4. Querying with JSON Strings](#7714-querying-with-json-strings)  
+      * [7.7.1.4. Querying with JSON Strings](#7714-querying-with-json-strings)
     * [7.7.2. Fast-Aggregations](#772-fast-aggregations)
-  * [7.8. Monitoring and Logging](#78-monitoring-and-logging)  
+  * [7.8. Monitoring and Logging](#78-monitoring-and-logging)
     * [7.8.1. Enabling Client Statistics](#781-enabling-client-statistics)
     * [7.8.2. Logging Configuration](#782-logging-configuration)
 * [8. Development and Testing](#8-development-and-testing)
@@ -92,8 +92,8 @@
 
 # Introduction
 
-[![GoDoc](https://godoc.org/github.com/hazelcast/hazelcast-go-client?status.svg)](https://godoc.org/github.com/hazelcast/hazelcast-go-client)
-[![Go Report Card](https://goreportcard.com/badge/github.com/hazelcast/hazelcast-go-client)](https://goreportcard.com/report/github.com/hazelcast/hazelcast-go-client)
+[![GoDoc](https://godoc.org/github.com/mbilski/hazelcast-go-client?status.svg)](https://godoc.org/github.com/mbilski/hazelcast-go-client)
+[![Go Report Card](https://goreportcard.com/badge/github.com/mbilski/hazelcast-go-client)](https://goreportcard.com/report/github.com/mbilski/hazelcast-go-client)
 <br />
 
 This document explains Go client for Hazelcast which uses Hazelcast's Open Client Protocol 1.6. This client works with Hazelcast 3.6 and higher.
@@ -102,7 +102,7 @@ This document explains Go client for Hazelcast which uses Hazelcast's Open Clien
 
 # 1. Getting Started
 
-This chapter provides information on how to get started with your Hazelcast Go client. It outlines the requirements, 
+This chapter provides information on how to get started with your Hazelcast Go client. It outlines the requirements,
 installation and configuration of the client, setting up a cluster, and provides a simple application that uses a distributed map in Go client.
 
 ## 1.1. Requirements
@@ -132,7 +132,7 @@ In order to use Hazelcast Go client, we first need to setup a Hazelcast IMDG clu
 There are following options to start a Hazelcast IMDG cluster easily:
 
 * You can run standalone members by downloading and running JAR files from the website.
-* You can embed members to your Java projects. 
+* You can embed members to your Java projects.
 
 We are going to download JARs from the website and run a standalone member for this guide.
 
@@ -162,8 +162,8 @@ INFO: [192.168.0.3]:5701 [dev] [3.10.4] [192.168.0.3]:5701 is STARTED
 #### 1.2.1.2. Adding User Library to CLASSPATH
 
 When you want to use features such as querying and language interoperability, you might need to add your own Java classes
-to the Hazelcast member in order to use them from your Go client. This can be done by adding your own compiled code to the 
-`CLASSPATH`. To do this, compile your code with the `CLASSPATH` and add the compiled files to the `user-lib` directory in the extracted `hazelcast-<version>.zip` (or `tar`). 
+to the Hazelcast member in order to use them from your Go client. This can be done by adding your own compiled code to the
+`CLASSPATH`. To do this, compile your code with the `CLASSPATH` and add the compiled files to the `user-lib` directory in the extracted `hazelcast-<version>.zip` (or `tar`).
 Then, you can start your Hazelcast member by using the start scripts in the `bin` directory. The start scripts will automatically add your compiled classes to the `CLASSPATH`.
 
 Note that if you are adding an `IdentifiedDataSerializable` or a `Portable` class, you need to add its factory too. Then, you should configure the factory in the `hazelcast.xml` configuration file. This file resides in the `bin` directory where you extracted the `hazelcast-<version>.zip` (or `tar`).
@@ -192,10 +192,10 @@ See the [Hazelcast IMDG Reference Manual](http://docs.hazelcast.org/docs/latest/
 Following command installs Hazelcast Go client:
 
 ```
-go get github.com/hazelcast/hazelcast-go-client
+go get github.com/mbilski/hazelcast-go-client
 ```
 
-See the Go client's [tutorial](https://github.com/hazelcast/hazelcast-go-client/tree/master/sample/helloworld) for more information on installing and setting up the client.
+See the Go client's [tutorial](https://github.com/mbilski/hazelcast-go-client/tree/master/sample/helloworld) for more information on installing and setting up the client.
 
 ## 1.4. Basic Configuration
 
@@ -288,7 +288,7 @@ You need to create a `Config` object and adjust its properties. Then you can pas
 ```go
 package main
 
-import "github.com/hazelcast/hazelcast-go-client"
+import "github.com/mbilski/hazelcast-go-client"
 
 func main() {
 
@@ -346,13 +346,13 @@ The above property specifies the timeout duration to give up the invocations whe
 config.SetProperty(property.InvocationTimeoutSeconds.Name(), "2") // Sets invocation timeout as 2 seconds
 ```
 
-or 
+or
 
 ```go
 config.SetProperty("hazelcast.client.invocation.timeout.seconds", "2") // Sets invocation timeout as 2 seconds
 ```
 
-**By using an environment variable:** 
+**By using an environment variable:**
 
 ```go
 os.Setenv(property.InvocationTimeoutSeconds.Name(), "2")
@@ -362,7 +362,7 @@ os.Setenv(property.InvocationTimeoutSeconds.Name(), "2")
 If you set a property both programmatically and via an environment variable, the programmatically
 set value will be used.
 
-See the [complete list](https://github.com/hazelcast/hazelcast-go-client/blob/master/config/property/client_properties.go) of client system properties, along with their descriptions, which can be used to configure your Hazelcast Go client.
+See the [complete list](https://github.com/mbilski/hazelcast-go-client/blob/master/config/property/client_properties.go) of client system properties, along with their descriptions, which can be used to configure your Hazelcast Go client.
 
 
 
@@ -378,7 +378,7 @@ The following example first creates a programmatic configuration object. Then, i
 import (
 	"fmt"
 
-	"github.com/hazelcast/hazelcast-go-client"
+	"github.com/mbilski/hazelcast-go-client"
 )
 
 func main() {
@@ -400,7 +400,7 @@ This should print logs about the cluster members and information about the clien
 
 ```
 2018/10/24 16:16:16 New State :  STARTING
-2018/10/24 16:16:16 
+2018/10/24 16:16:16
 
 Members {size:2} [
 	Member localhost:5701 - 923f0f91-9bc8-432f-9650-fd4a5436e80b
@@ -424,7 +424,7 @@ Let's manipulate a distributed map on a cluster using the client.
 ```go
 import (
 	"fmt"
-	"github.com/hazelcast/hazelcast-go-client"
+	"github.com/mbilski/hazelcast-go-client"
 )
 
 func main() {
@@ -450,7 +450,7 @@ func main() {
 
 ```
 2018/10/24 16:23:26 New State :  STARTING
-2018/10/24 16:23:26 
+2018/10/24 16:23:26
 
 Members {size:2} [
 	Member localhost:5701 - 923f0f91-9bc8-432f-9650-fd4a5436e80b
@@ -474,7 +474,7 @@ You see this example puts all IT personnel into a cluster-wide `personnelMap` an
 ```go
 import (
 	"fmt"
-	"github.com/hazelcast/hazelcast-go-client"
+	"github.com/mbilski/hazelcast-go-client"
 )
 
 func main() {
@@ -500,7 +500,7 @@ func main() {
 
 ```
 2018/10/24 16:25:58 New State :  STARTING
-2018/10/24 16:25:58 
+2018/10/24 16:25:58
 
 Members {size:2} [
 	Member localhost:5701 - 923f0f91-9bc8-432f-9650-fd4a5436e80b
@@ -525,15 +525,15 @@ That is because our map lives in the cluster and no matter which client we use, 
 
 ## 1.6. Code Samples
 
-See the Hazelcast Go [code samples](https://github.com/hazelcast/hazelcast-go-client/blob/master/sample) for more examples.
+See the Hazelcast Go [code samples](https://github.com/mbilski/hazelcast-go-client/blob/master/sample) for more examples.
 
-You can also see the Hazelcast Go [API Documentation](https://godoc.org/github.com/hazelcast/hazelcast-go-client).
+You can also see the Hazelcast Go [API Documentation](https://godoc.org/github.com/mbilski/hazelcast-go-client).
 
 # 2. Features
 
 Hazelcast Go client supports the following data structures and features:
 
-* Map 
+* Map
 * Multi Map
 * List
 * Set
@@ -549,7 +549,7 @@ Hazelcast Go client supports the following data structures and features:
 * Entry Processor
 * Flake Id Generator
 * CRDT PN Counter
-* Aggregations 
+* Aggregations
 * Projections
 * Lifecycle Service
 * Smart Client
@@ -578,14 +578,14 @@ config.NetworkConfig().AddAddress("some-ip-address:port")
 hazelcast.NewClientWithConfig(config)
 ```
 
-See the `Config` class documentation at [Hazelcast Go client API Docs](https://godoc.org/github.com/hazelcast/hazelcast-go-client/config#Config) for details.
+See the `Config` class documentation at [Hazelcast Go client API Docs](https://godoc.org/github.com/mbilski/hazelcast-go-client/config#Config) for details.
 
 # 4. Serialization
 
 Serialization is the process of converting an object into a stream of bytes to store the object in the memory, a file or database, or transmit it through the network. Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization. Hazelcast offers you its own native serialization methods. You will see these methods throughout this chapter. For primitive types, it uses Hazelcast native serialization. For other complex types (e.g. Go objects), it uses Gob serialization.
 
 > **NOTE: `int` and `[]int` types in Go Language are serialized as `int64` and `[]int64` respectively by Hazelcast Serialization.**
- 
+
 Note that if the object is not one of the above-mentioned types, the Go client uses `Gob serialization` by default.
 
 However, `Gob Serialization` is not the best way of serialization in terms of performance and interoperability between the clients in different languages. If you want the serialization to work faster or you use the clients in different languages, Hazelcast offers its own native serialization types, such as [IdentifiedDataSerializable Serialization](#41-identifieddataserializable-serialization) and [Portable Serialization](#42-portable-serialization).
@@ -882,7 +882,7 @@ config.SerializationConfig().SetGlobalSerializer(&GlobalSerializer{})
 
 # 5. Setting Up Client Network
 
-All network related configuration of Hazelcast Go client is performed via the `NetworkConfig` class when using programmatic configuration. 
+All network related configuration of Hazelcast Go client is performed via the `NetworkConfig` class when using programmatic configuration.
 Here is an example of configuring network for Go client programmatically.
 
 ```go
@@ -1419,7 +1419,7 @@ client.LifecycleService().RemoveLifecycleListener(registrationID)
 
 ```
 2018/10/26 16:16:51 New State :  STARTING
-2018/10/26 16:16:51 
+2018/10/26 16:16:51
 
 Lifecycle Event >>>  CONNECTED
 Members {size:1} [
@@ -1633,7 +1633,7 @@ The `Map` interface provides the following functions for entry processing:
 
 * `executeOnEntries` can process all entries in a map.
 
-* `executeOnEntriesWithPredicate` can process all entries in a map with a defined predicate. 
+* `executeOnEntriesWithPredicate` can process all entries in a map with a defined predicate.
 
 In the Go client, an `EntryProcessor` should be `IdentifiedDataSerializable` , `Portable` or `Custom Serializable` because the server should be able to deserialize it to process.
 
@@ -1678,30 +1678,30 @@ import java.util.Map;
 public class IdentifiedEntryProcessor extends AbstractEntryProcessor<String, String> implements IdentifiedDataSerializable {
      static final int CLASS_ID = 1;
      private String value;
-     
+
     public IdentifiedEntryProcessor() {
     }
-    
+
      @Override
     public int getFactoryId() {
         return IdentifiedFactory.FACTORY_ID;
     }
-    
+
      @Override
     public int getId() {
         return CLASS_ID;
     }
-    
+
      @Override
     public void writeData(ObjectDataOutput out) throws IOException {
         out.writeUTF(value);
     }
-    
+
      @Override
     public void readData(ObjectDataInput in) throws IOException {
         value = in.readUTF();
     }
-    
+
      @Override
     public Object process(Map.Entry<String, String> entry) {
         entry.setValue(value);
@@ -1718,7 +1718,7 @@ import com.hazelcast.nio.serialization.IdentifiedDataSerializable;
 
 public class IdentifiedFactory implements DataSerializableFactory {
     public static final int FACTORY_ID = 5;
-    
+
      @Override
     public IdentifiedDataSerializable create(int typeId) {
         if (typeId == IdentifiedEntryProcessor.CLASS_ID) {
@@ -1814,7 +1814,7 @@ Hazelcast offers the following ways for distributed query purposes:
 
 #### 7.7.1.1. Employee Map Query Example
 
-Assume that you have an `employee` map containing the values of `Employee` objects, as coded below. 
+Assume that you have an `employee` map containing the values of `Employee` objects, as coded below.
 
 ```go
 type Employee struct {
@@ -1852,7 +1852,7 @@ func (e *Employee) ClassID() int32 {
 
 Note that `Employee` is implementing `Portable`. As portable types are not deserialized on the server side for querying, you don't need to implement its Java equivalent on the server side.
 
- For the non-portable types, you need to implement its Java equivalent and its serializable factory on the server side for server to reconstitute the objects from binary formats. 
+ For the non-portable types, you need to implement its Java equivalent and its serializable factory on the server side for server to reconstitute the objects from binary formats.
  In this case before starting the server, you need to compile the `Employee` and related factory classes with server's `CLASSPATH` and add them to the `user-lib` directory in the extracted `hazelcast-<version>.zip` (or `tar`). See the [Adding User Library to CLASSPATH section](#1213-adding-user-library-to-classpath).
 
  > **NOTE: Querying with `Portable` object is faster as compared to `IdentifiedDataSerializable`.**
@@ -1868,7 +1868,7 @@ prdct := predicate.And(predicate.Equal("active", true), predicate.LessThan("age"
 value, _ := mp.ValuesWithPredicate(prdct)
 ```
 
-In the above example code, `predicate` verifies whether the entry is active and its `age` value is less than 30. This `predicate` is applied to the `employee` map using the `map.ValuesWithPredicate(predicate)` method. This method sends the predicate to all cluster members and merges the results coming from them. 
+In the above example code, `predicate` verifies whether the entry is active and its `age` value is less than 30. This `predicate` is applied to the `employee` map using the `map.ValuesWithPredicate(predicate)` method. This method sends the predicate to all cluster members and merges the results coming from them.
 
 > **NOTE: Predicates can also be applied to `keySet` and `entrySet` of the Hazelcast IMDG's distributed map.**
 
@@ -1885,7 +1885,7 @@ value, _ := mp.ValuesWithPredicate(prdct)
 ##### Supported SQL Syntax
 
 **AND/OR:** `<expression> AND <expression> AND <expression>…`
-   
+
 - `active AND age > 30`
 - `active = false OR age = 45 OR name = 'Joe'`
 - `active AND ( age > 20 OR salary < 60000 )`
@@ -2090,7 +2090,7 @@ config.SetProperty(property.StatisticsPeriodSeconds.Name(), "4")
  ```
 
  After enabling the client statistics, you can monitor your clients using Hazelcast Management Center. See the [Monitoring Clients section](https://docs.hazelcast.org/docs/management-center/latest/manual/html/index.html#monitoring-clients) in the Hazelcast Management Center Reference Manual for more information on the client statistics.
- 
+
 ### 7.8.2. Logging Configuration
 
 By default Hazelcast Go client uses DefaultLogger for logging. The default logging level is
@@ -2099,9 +2099,9 @@ By default Hazelcast Go client uses DefaultLogger for logging. The default loggi
 ```go
 config := hazelcast.NewConfig()
 config.SetProperty(property.LoggingLevel.Name(), logger.ErrorLevel)
-``` 
+```
 
-As described in [Client System Properties Section](#143-client-system-properties) you can also 
+As described in [Client System Properties Section](#143-client-system-properties) you can also
 set the log level via an environment variable with this property:
 
 ```go
@@ -2137,7 +2137,7 @@ The Default Logger's format is as follows:
 
 An example default log message is as follows:
 ```
-2018/11/30 17:48:52 github.com/hazelcast/hazelcast-go-client/internal.(*lifecycleService).fireLifecycleEvent
+2018/11/30 17:48:52 github.com/mbilski/hazelcast-go-client/internal.(*lifecycleService).fireLifecycleEvent
 INFO:  hz.client_1 [dev] [0.4] New State :  STARTED
 ```
 
@@ -2147,12 +2147,12 @@ l := logger.New()
 l.SetPrefix("myPrefix ")
 config := hazelcast.NewConfig()
 config.LoggerConfig().SetLogger(l)
-``` 
+```
 
 The same log message will now be as follows:
 
 ```
-myPrefix 2018/11/30 17:55:40 github.com/hazelcast/hazelcast-go-client/internal.(*lifecycleService).fireLifecycleEvent
+myPrefix 2018/11/30 17:55:40 github.com/mbilski/hazelcast-go-client/internal.(*lifecycleService).fireLifecycleEvent
 INFO:  hz.client_1 [dev] [0.4] New State :  CONNECTED
 ```
 
@@ -2304,22 +2304,22 @@ config.LoggerConfig().SetLogger(&gLogger{})
 
 # 8. Development and Testing
 
-If you want to help with bug fixes, develop new features or tweak the implementation to your application's needs, 
+If you want to help with bug fixes, develop new features or tweak the implementation to your application's needs,
 you can follow the steps in this section.
 
-You must not run the following: 
+You must not run the following:
 
 ```
 go get github.com/gitUserName/hazelcast-go-client
 ```
 
-Because when you run this way, it will create a directory problem. 
+Because when you run this way, it will create a directory problem.
 
-In order for it to work properly, you must run it in the following order. 
+In order for it to work properly, you must run it in the following order.
 
 1.Install Hazelcast Go client.
 ```
-go get github.com/hazelcast/hazelcast-go-client
+go get github.com/mbilski/hazelcast-go-client
 ```
 
 2.Change directory to `$GOPATH`.
@@ -2343,7 +2343,7 @@ git checkout userRepo developmentBranch
 
 Follow the below steps to build and install Hazelcast Go client from its source:
 
-- Clone the GitHub repository [https://github.com/hazelcast/hazelcast-go-client.git](https://github.com/hazelcast/hazelcast-go-client.git).
+- Clone the GitHub repository [https://github.com/mbilski/hazelcast-go-client.git](https://github.com/mbilski/hazelcast-go-client.git).
 - Run `sh build.sh`.
 
 If you are planning to contribute, please run the style checker, as shown below, and fix the reported issues before sending a pull request.
@@ -2366,7 +2366,7 @@ Test script automatically downloads `hazelcast-remote-controller` and Hazelcast 
 
 You can use the following channels for your questions and development/usage issues:
 
-* [This repository](https://github.com/hazelcast/hazelcast-go-client) by opening an issue.
+* [This repository](https://github.com/mbilski/hazelcast-go-client) by opening an issue.
 * Our Google Groups directory: https://groups.google.com/forum/#!forum/hazelcast
 * Stack Overflow: https://stackoverflow.com/questions/tagged/hazelcast
 
@@ -2376,7 +2376,7 @@ Besides your development contributions as explained in the [Development and Test
 
 # 11. License
 
-[Apache 2 License](https://github.com/hazelcast/hazelcast-go-client/blob/master/LICENSE).
+[Apache 2 License](https://github.com/mbilski/hazelcast-go-client/blob/master/LICENSE).
 
 # 12. Copyright
 

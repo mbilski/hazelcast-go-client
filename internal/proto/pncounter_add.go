@@ -15,7 +15,7 @@
 package proto
 
 import (
-	"github.com/hazelcast/hazelcast-go-client/internal/proto/bufutil"
+	"github.com/mbilski/hazelcast-go-client/internal/proto/bufutil"
 )
 
 func pncounterAddCalculateSize(name string, delta int64, getBeforeUpdate bool, replicaTimestamps []*Pair, targetReplica *Address) int {

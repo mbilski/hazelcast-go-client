@@ -8,7 +8,7 @@
 # testify : go get github.com/stretchr/testify
 
 # Set up environment
-export CLIENT_IMPORT_PATH="github.com/hazelcast/hazelcast-go-client"
+export CLIENT_IMPORT_PATH="github.com/mbilski/hazelcast-go-client"
 export PACKAGE_LIST=$(go list -tags enterprise $CLIENT_IMPORT_PATH/... | grep -vE ".*/test|.*/compatibility|.*/rc|.*/sample" | sed -e 'H;${x;s/\n/,/g;s/^,//;p;};d')
 
 set -ex

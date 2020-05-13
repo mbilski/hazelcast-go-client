@@ -19,11 +19,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hazelcast/hazelcast-go-client"
-	"github.com/hazelcast/hazelcast-go-client/core"
-	"github.com/hazelcast/hazelcast-go-client/core/predicate"
-	"github.com/hazelcast/hazelcast-go-client/rc"
-	"github.com/hazelcast/hazelcast-go-client/test/testutil"
+	"github.com/mbilski/hazelcast-go-client"
+	"github.com/mbilski/hazelcast-go-client/core"
+	"github.com/mbilski/hazelcast-go-client/core/predicate"
+	"github.com/mbilski/hazelcast-go-client/rc"
+	"github.com/mbilski/hazelcast-go-client/test/testutil"
 	"github.com/stretchr/testify/require"
 )
 

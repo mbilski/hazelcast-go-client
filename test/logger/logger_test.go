@@ -21,10 +21,10 @@ import (
 
 	"bytes"
 
-	"github.com/hazelcast/hazelcast-go-client"
-	"github.com/hazelcast/hazelcast-go-client/core/logger"
-	"github.com/hazelcast/hazelcast-go-client/rc"
-	"github.com/hazelcast/hazelcast-go-client/test/testutil"
+	"github.com/mbilski/hazelcast-go-client"
+	"github.com/mbilski/hazelcast-go-client/core/logger"
+	"github.com/mbilski/hazelcast-go-client/rc"
+	"github.com/mbilski/hazelcast-go-client/test/testutil"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -132,7 +132,7 @@ func TestDefaultLoggerFormat(t *testing.T) {
 	logMessage := buf.String()
 	dateRegex := "\\d{1,4}/\\d{1,4}/\\d{1,4}"
 	timeRegex := "\\d{1,4}:\\d{1,4}:\\d{1,4}"
-	functionNameRegex := "github.com/hazelcast.*"
+	functionNameRegex := "github.com/mbilski.*"
 	clientNameRegex := "hz.client_\\d+"
 	groupNameRegex := "\\[" + config.GroupConfig().Name() + "\\]"
 	clientVersionRegex := "\\[\\d+.\\d+(-SNAPSHOT)?\\]"

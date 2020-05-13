@@ -14,7 +14,7 @@
 
 package config
 
-import "github.com/hazelcast/hazelcast-go-client/core"
+import "github.com/mbilski/hazelcast-go-client/core"
 
 const (
 

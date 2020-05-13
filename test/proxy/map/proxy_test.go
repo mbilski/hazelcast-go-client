@@ -18,7 +18,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/hazelcast/hazelcast-go-client/internal/proto/bufutil"
+	"github.com/mbilski/hazelcast-go-client/internal/proto/bufutil"
 	"github.com/stretchr/testify/require"
 )
 

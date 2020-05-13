@@ -15,7 +15,7 @@
 package proto
 
 import (
-	"github.com/hazelcast/hazelcast-go-client/serialization"
+	"github.com/mbilski/hazelcast-go-client/serialization"
 )
 
 func mapEntriesWithPredicateCalculateSize(name string, predicate serialization.Data) int {

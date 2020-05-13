@@ -19,9 +19,9 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/hazelcast/hazelcast-go-client/core"
-	"github.com/hazelcast/hazelcast-go-client/serialization"
-	"github.com/hazelcast/hazelcast-go-client/serialization/internal/classdef"
+	"github.com/mbilski/hazelcast-go-client/core"
+	"github.com/mbilski/hazelcast-go-client/serialization"
+	"github.com/mbilski/hazelcast-go-client/serialization/internal/classdef"
 	"github.com/stretchr/testify/assert"
 )
 

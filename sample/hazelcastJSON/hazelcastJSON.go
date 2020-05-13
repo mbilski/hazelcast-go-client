@@ -17,9 +17,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/hazelcast/hazelcast-go-client"
-	"github.com/hazelcast/hazelcast-go-client/core"
-	"github.com/hazelcast/hazelcast-go-client/core/predicate"
+	"github.com/mbilski/hazelcast-go-client"
+	"github.com/mbilski/hazelcast-go-client/core"
+	"github.com/mbilski/hazelcast-go-client/core/predicate"
 )
 
 type person struct {

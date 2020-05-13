@@ -17,7 +17,7 @@ package client
 import (
 	"testing"
 
-	"github.com/hazelcast/hazelcast-go-client/core"
+	"github.com/mbilski/hazelcast-go-client/core"
 	"github.com/stretchr/testify/assert"
 )
 

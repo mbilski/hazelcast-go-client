@@ -15,8 +15,8 @@
 package proto
 
 import (
-	"github.com/hazelcast/hazelcast-go-client/internal/proto/bufutil"
-	"github.com/hazelcast/hazelcast-go-client/serialization"
+	"github.com/mbilski/hazelcast-go-client/internal/proto/bufutil"
+	"github.com/mbilski/hazelcast-go-client/serialization"
 )
 
 func listSubCalculateSize(name string, from int32, to int32) int {

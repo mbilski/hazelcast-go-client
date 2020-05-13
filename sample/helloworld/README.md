@@ -33,7 +33,7 @@ Hopefully you will see something like this:
 ```
 $ go version
 go version go1.9.2 darwin/amd64
-$ 
+$
 ```
 
 This indicates the version of "_Go_", here it is 1.9.2, and the hardware being used. '_Darwin_' means this machine is a Mac.
@@ -58,16 +58,16 @@ code from Github.
 From the `go` directory, run this command
 
 ```
-go get github.com/hazelcast/hazelcast-go-client
+go get github.com/mbilski/hazelcast-go-client
 ```
 
 or this with the `-v` flag for verbose output
 
 ```
-go get -v github.com/hazelcast/hazelcast-go-client
+go get -v github.com/mbilski/hazelcast-go-client
 ```
 
-This will pull down the Hazelcast client for Go from Github, from [here](https://github.com/hazelcast/hazelcast-go-client.git), and
+This will pull down the Hazelcast client for Go from Github, from [here](https://github.com/mbilski/hazelcast-go-client.git), and
 set up the necessary Go directory structory.
 
 #### Verification
@@ -81,13 +81,13 @@ You should see at least these folders
 ├── go/pkg/
 ├── go/src/
 ├── go/src/github.com
-├── go/src/github.com/hazelcast
-├── go/src/github.com/hazelcast/hazelcast-go-client
+├── go/src/github.com/mbilski
+├── go/src/github.com/mbilski/hazelcast-go-client
 ```
 
 The `pkg` folder holds output packages.
 
-The `src` folder holds the source code, in a subdirectory for Github code, then a subdirectory for the 
+The `src` folder holds the source code, in a subdirectory for Github code, then a subdirectory for the
 Hazelcast Github user, and then a subdirectory for the Hazelcast client for Go repository.
 
 If you see this, we are done with Go set-up.
@@ -98,7 +98,7 @@ Three simple steps.
 
 #### "_Java_"
 
-Hazelcast is a Java application, so you need a Java implementation. 
+Hazelcast is a Java application, so you need a Java implementation.
 
 The best place to get this from is [OpenJDK](http://adoptopenjdk.net/), an open source implementation of Java.
 Or commercially, from [Oracle](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
@@ -118,7 +118,7 @@ Next download Hazelcast.
 
 You can get this from a number of places, in this case try [here](https://hazelcast.org/download/).
 
-You want "_Hazelcast IMDG_". _IMDG_ here is short for In-Memory Data Grid. 
+You want "_Hazelcast IMDG_". _IMDG_ here is short for In-Memory Data Grid.
 
 The most recent release is shown at the top. Select the _ZIP_ or _TAR_, download and unpack.
 You can put it anywhere for now, so your downloads folder is as good a place as any.
@@ -148,7 +148,7 @@ $ java -version
 java version "9.0.1"
 Java(TM) SE Runtime Environment (build 9.0.1+11)
 Java HotSpot(TM) 64-Bit Server VM (build 9.0.1+11, mixed mode)
-$ 
+$
 ```
 
 If Java is found, then you can try Hazelcast, using the `start.sh` script in
@@ -158,7 +158,7 @@ This will give a lot of output, as Hazelcast is quite verbose by default about w
 but towards the end you should see messages like
 
 ```
-INFO: [10.37.217.195]:5701 [dev] [3.9] 
+INFO: [10.37.217.195]:5701 [dev] [3.9]
 
 Members {size:1, ver:1} [
 	Member [10.37.217.195]:5701 - 57a58f7f-4453-4a6f-8e89-bf1a464e46b1 this
@@ -168,16 +168,16 @@ INFO: [10.37.217.195]:5701 [dev] [3.9] [10.37.217.195]:5701 is STARTED
 
 ```
 
-This message indicates you have a cluster (of one!) Hazelcast servers running on your machine. 
+This message indicates you have a cluster (of one!) Hazelcast servers running on your machine.
 In this case, the Hazelcast server is on the machine with IP address 10.37.217.195 and port 5701.
 
 ## Architecture
 
 Refer to the following diagram and subsequent explanation
 
-![Image of several Hazelcast JVMs and one Go routine][architecture] 
+![Image of several Hazelcast JVMs and one Go routine][architecture]
 
-### The servers - _Hazelcast_ running _Java_ 
+### The servers - _Hazelcast_ running _Java_
 
 Hazelcast's software here is the In-Memory Data Grid, or IMDG.
 
@@ -189,7 +189,7 @@ the work each. This is easily scalable, add a fifth server and the processing an
 will automatically increase by 25%.
 
 In this diagram Hazelcast has a data storage area named "card" to hold playing cards.
-This is a superset of a Java `Map` and similar to a database table. 
+This is a superset of a Java `Map` and similar to a database table.
 
 One major difference is the storage is spread across the available servers -- seven light green boxes indicates
 the "card" storage area has been split into seven parts. This is how scaling is achieved,
@@ -213,7 +213,7 @@ so very fast to access. The storage containers are Java JVMs, so data processing
 handled by familiar Java classes that you can write. Scalability and resilience are
 enabled by default.
 
-### The client - _Go_ 
+### The client - _Go_
 
 The _Hazelcast_ cluster can exist and operate on it's own, connecting to the outside world
 to handle HTTP traffic or whatever external connection is needed. But that means the
@@ -253,7 +253,7 @@ If the data is big or the network is poor, it can be more efficient to send the
 processing function to the data to modify it in situ.
 
 For now, the closing point on this section is that the _Go_ client is acting
-here as a proxy. Data is copied across the network from _Hazelcast_'s memory to 
+here as a proxy. Data is copied across the network from _Hazelcast_'s memory to
 the _Go_ routine's memory. If something else changes the copy held in _Hazelcast_
 the _Go_ routine won't (by default!) know this has happened. If the _Go_ routine
 does not save the data back to _Hazelcast_ after changing it, the master copy
@@ -318,7 +318,7 @@ though they could be run concurrently.
 
 #### `one.go`
 
-From the command line, in the directory with the `one.go` program (`$GOPATH/src/github.com/hazelcast/hazelcast-go-client/samples/hello-world/one`)
+From the command line, in the directory with the `one.go` program (`$GOPATH/src/github.com/mbilski/hazelcast-go-client/samples/hello-world/one`)
 run this command
 
 ```
@@ -370,7 +370,7 @@ Cluster discovery:  [127.0.0.1:5701]
 
 ##### Discovery
 
-The Go client is configured in `one.go` to try to connect to `127.0.0.1:5701`. 
+The Go client is configured in `one.go` to try to connect to `127.0.0.1:5701`.
 
 Obviously this fails if there isn't a Hazelcast server on that _host:port_.
 
@@ -434,11 +434,11 @@ same 5 are written there are still 5. The writes here replace the values that we
 Specifically the _Go_ code is doing a "_Put_" operation on the map which inserts the data
 if not present and replaces the data is present. This is good enough for most purposes
 but there are other versions, "_PutIfAbsent_" and "_Replace_" that allow a finer degree
-of control depending on if the data is already present. See 
+of control depending on if the data is already present. See
 [IMap](http://docs.hazelcast.org/docs/3.9/javadoc/com/hazelcast/core/IMap.html)
 for more details
 
-##### What is this doing (contd.)? 
+##### What is this doing (contd.)?
 
 Hazelcast uses a lazy-creation strategy.
 
@@ -493,7 +493,7 @@ of keys in the map, similar to selecting the primary key column on a relational
 database. Every key is present in the set exactly once.
 
 Thereafter, the code iterates through the set of keys, retrieving each value to
-print 
+print
 
 ##### Danger area
 
@@ -554,7 +554,7 @@ Members {size:1, ver:1} [
 This lists the members of the cluster, and if you're starting from clean there
 should only be one member, the process just started.
 
-Take a note of the process id of this server, for instance by looking in the 
+Take a note of the process id of this server, for instance by looking in the
 `hazelcast_instance.pid` file.
 
 *NOTE* The default port for _Hazelcast_ is 5701. 5701 was free, so 5701 was selected.
@@ -609,7 +609,7 @@ Using your O/s (`kill -9`, `taskkill`, etc) forceably terminate the first
 Hazelcast server that you started.
 
 The second _Hazelcast_ server will notice the first disappear, and moan
-about it. 
+about it.
 
 It should then produce a message with the new member list of the cluster,
 only containing itself.
@@ -654,7 +654,7 @@ and shutdown.
 Back to _Hazelcast_'s `bin` folder, remove the `hazelcast_instance.pid` file again, and
 run the `start.sh` again.
 
-A _Hazelcast_ server will start up, find the other one that is still running, and both 
+A _Hazelcast_ server will start up, find the other one that is still running, and both
 will produce a message showing who is now in the cluster.
 
 ```
@@ -700,7 +700,7 @@ as a resilient and scalable store.
 Although some of _Hazelcast_ servers may suffer mishaps and go offline,
 so long as sufficient others remain you don't lose data.
 
-(And you should always be able to find the cluster as it scales up and down, 
+(And you should always be able to find the cluster as it scales up and down,
 if you've configured correctly!)
 
 ## Summary
@@ -711,7 +711,7 @@ and _Node.js_.
 
 For _Go_ users, _Hazelcast_ respresents a fast, scalable, resilient data
 store that allows data to be easily shared between independent _Go_ routines
-that might be running on different hosts. 
+that might be running on different hosts.
 
 _Hazelcast_ has many more features too, queues, topics, executors, entry
 processors, listeners, etc, etc... the subject for another day.

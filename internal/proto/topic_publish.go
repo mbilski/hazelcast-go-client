@@ -15,7 +15,7 @@
 package proto
 
 import (
-	"github.com/hazelcast/hazelcast-go-client/serialization"
+	"github.com/mbilski/hazelcast-go-client/serialization"
 )
 
 func topicPublishCalculateSize(name string, message serialization.Data) int {

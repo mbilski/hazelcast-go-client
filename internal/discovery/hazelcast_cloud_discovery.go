@@ -26,10 +26,10 @@ import (
 	"crypto/tls"
 	"crypto/x509"
 
-	"github.com/hazelcast/hazelcast-go-client/config/property"
-	"github.com/hazelcast/hazelcast-go-client/core"
-	"github.com/hazelcast/hazelcast-go-client/internal/proto"
-	"github.com/hazelcast/hazelcast-go-client/internal/util/iputil"
+	"github.com/mbilski/hazelcast-go-client/config/property"
+	"github.com/mbilski/hazelcast-go-client/core"
+	"github.com/mbilski/hazelcast-go-client/internal/proto"
+	"github.com/mbilski/hazelcast-go-client/internal/util/iputil"
 )
 
 const (

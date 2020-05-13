@@ -15,8 +15,8 @@
 package aggregation
 
 import (
-	"github.com/hazelcast/hazelcast-go-client/internal/util/precond"
-	"github.com/hazelcast/hazelcast-go-client/serialization"
+	"github.com/mbilski/hazelcast-go-client/internal/util/precond"
+	"github.com/mbilski/hazelcast-go-client/serialization"
 )
 
 type aggregator struct {

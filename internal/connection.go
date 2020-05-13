@@ -23,13 +23,13 @@ import (
 
 	"crypto/tls"
 
-	"github.com/hazelcast/hazelcast-go-client/config"
-	"github.com/hazelcast/hazelcast-go-client/core"
-	"github.com/hazelcast/hazelcast-go-client/core/logger"
-	"github.com/hazelcast/hazelcast-go-client/internal/proto"
-	"github.com/hazelcast/hazelcast-go-client/internal/proto/bufutil"
-	"github.com/hazelcast/hazelcast-go-client/internal/util/timeutil"
-	"github.com/hazelcast/hazelcast-go-client/internal/util/versionutil"
+	"github.com/mbilski/hazelcast-go-client/config"
+	"github.com/mbilski/hazelcast-go-client/core"
+	"github.com/mbilski/hazelcast-go-client/core/logger"
+	"github.com/mbilski/hazelcast-go-client/internal/proto"
+	"github.com/mbilski/hazelcast-go-client/internal/proto/bufutil"
+	"github.com/mbilski/hazelcast-go-client/internal/util/timeutil"
+	"github.com/mbilski/hazelcast-go-client/internal/util/versionutil"
 )
 
 const (
@@ -110,7 +110,17 @@ func (c *Connection) createSocket(networkCfg *config.NetworkConfig, address core
 }
 
 func (c *Connection) dialToAddressWithTimeout(address core.Address, conTimeout time.Duration) (net.Conn, error) {
-	return net.DialTimeout("tcp", address.String(), conTimeout)
+	conn, err := net.DialTimeout("tcp", address.String(), conTimeout)
+
+	if err != nil {
+		return nil, err
+	}
+
+	tcpConn := conn.(*net.TCPConn)
+
+	tcpConn.SetNoDelay(false)
+
+	return conn, nil
 }
 
 func (c *Connection) init() {

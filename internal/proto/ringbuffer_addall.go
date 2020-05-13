@@ -15,9 +15,9 @@
 package proto
 
 import (
-	"github.com/hazelcast/hazelcast-go-client/serialization"
+	"github.com/mbilski/hazelcast-go-client/serialization"
 
-	"github.com/hazelcast/hazelcast-go-client/internal/proto/bufutil"
+	"github.com/mbilski/hazelcast-go-client/internal/proto/bufutil"
 )
 
 func ringbufferAddAllCalculateSize(name string, valueList []serialization.Data, overflowPolicy int32) int {

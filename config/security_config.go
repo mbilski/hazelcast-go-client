@@ -15,7 +15,7 @@
 package config
 
 import (
-	"github.com/hazelcast/hazelcast-go-client/security"
+	"github.com/mbilski/hazelcast-go-client/security"
 )
 
 // SecurityConfig contains the security configuration for a client.

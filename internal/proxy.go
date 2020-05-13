@@ -18,12 +18,12 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/hazelcast/hazelcast-go-client/core"
-	"github.com/hazelcast/hazelcast-go-client/internal/proto"
-	"github.com/hazelcast/hazelcast-go-client/internal/proto/bufutil"
-	"github.com/hazelcast/hazelcast-go-client/internal/util/colutil"
-	"github.com/hazelcast/hazelcast-go-client/internal/util/nilutil"
-	"github.com/hazelcast/hazelcast-go-client/serialization"
+	"github.com/mbilski/hazelcast-go-client/core"
+	"github.com/mbilski/hazelcast-go-client/internal/proto"
+	"github.com/mbilski/hazelcast-go-client/internal/proto/bufutil"
+	"github.com/mbilski/hazelcast-go-client/internal/util/colutil"
+	"github.com/mbilski/hazelcast-go-client/internal/util/nilutil"
+	"github.com/mbilski/hazelcast-go-client/serialization"
 )
 
 const (

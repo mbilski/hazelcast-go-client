@@ -15,8 +15,8 @@
 package internal
 
 import (
-	"github.com/hazelcast/hazelcast-go-client/internal/flakeid"
-	"github.com/hazelcast/hazelcast-go-client/internal/proto"
+	"github.com/mbilski/hazelcast-go-client/internal/flakeid"
+	"github.com/mbilski/hazelcast-go-client/internal/proto"
 )
 
 type flakeIDGeneratorProxy struct {

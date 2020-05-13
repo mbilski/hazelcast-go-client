@@ -17,8 +17,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/hazelcast/hazelcast-go-client"
-	"github.com/hazelcast/hazelcast-go-client/serialization"
+	"github.com/mbilski/hazelcast-go-client"
+	"github.com/mbilski/hazelcast-go-client/serialization"
 )
 
 const value = "value"

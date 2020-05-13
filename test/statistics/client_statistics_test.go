@@ -29,11 +29,11 @@ import (
 
 	"sort"
 
-	"github.com/hazelcast/hazelcast-go-client"
-	"github.com/hazelcast/hazelcast-go-client/config/property"
-	"github.com/hazelcast/hazelcast-go-client/internal"
-	"github.com/hazelcast/hazelcast-go-client/rc"
-	"github.com/hazelcast/hazelcast-go-client/test/testutil"
+	"github.com/mbilski/hazelcast-go-client"
+	"github.com/mbilski/hazelcast-go-client/config/property"
+	"github.com/mbilski/hazelcast-go-client/internal"
+	"github.com/mbilski/hazelcast-go-client/rc"
+	"github.com/mbilski/hazelcast-go-client/test/testutil"
 	"github.com/stretchr/testify/assert"
 )
 

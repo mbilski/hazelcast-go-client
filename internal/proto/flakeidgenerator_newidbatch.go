@@ -15,7 +15,7 @@
 package proto
 
 import (
-	"github.com/hazelcast/hazelcast-go-client/internal/proto/bufutil"
+	"github.com/mbilski/hazelcast-go-client/internal/proto/bufutil"
 )
 
 func flakeidgeneratorNewIdBatchCalculateSize(name string, batchSize int32) int {

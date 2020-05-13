@@ -17,7 +17,7 @@ package main
 import (
 	"log"
 
-	"github.com/hazelcast/hazelcast-go-client"
+	"github.com/mbilski/hazelcast-go-client"
 )
 
 func main() {

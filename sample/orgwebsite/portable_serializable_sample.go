@@ -17,9 +17,9 @@ package orgwebsite
 import (
 	"time"
 
-	"github.com/hazelcast/hazelcast-go-client"
-	"github.com/hazelcast/hazelcast-go-client/config"
-	"github.com/hazelcast/hazelcast-go-client/serialization"
+	"github.com/mbilski/hazelcast-go-client"
+	"github.com/mbilski/hazelcast-go-client/config"
+	"github.com/mbilski/hazelcast-go-client/serialization"
 )
 
 const (

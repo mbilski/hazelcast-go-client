@@ -20,12 +20,12 @@ import (
 
 	"runtime"
 
-	"github.com/hazelcast/hazelcast-go-client"
-	"github.com/hazelcast/hazelcast-go-client/core"
-	"github.com/hazelcast/hazelcast-go-client/internal"
-	"github.com/hazelcast/hazelcast-go-client/internal/reliabletopic"
-	"github.com/hazelcast/hazelcast-go-client/rc"
-	"github.com/hazelcast/hazelcast-go-client/test/testutil"
+	"github.com/mbilski/hazelcast-go-client"
+	"github.com/mbilski/hazelcast-go-client/core"
+	"github.com/mbilski/hazelcast-go-client/internal"
+	"github.com/mbilski/hazelcast-go-client/internal/reliabletopic"
+	"github.com/mbilski/hazelcast-go-client/rc"
+	"github.com/mbilski/hazelcast-go-client/test/testutil"
 	"github.com/stretchr/testify/assert"
 )
 

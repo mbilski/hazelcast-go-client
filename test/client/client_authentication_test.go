@@ -17,11 +17,11 @@ package client
 import (
 	"testing"
 
-	hazelcast "github.com/hazelcast/hazelcast-go-client"
-	"github.com/hazelcast/hazelcast-go-client/security"
-	"github.com/hazelcast/hazelcast-go-client/serialization"
-	"github.com/hazelcast/hazelcast-go-client/serialization/spi"
-	"github.com/hazelcast/hazelcast-go-client/test/testutil"
+	hazelcast "github.com/mbilski/hazelcast-go-client"
+	"github.com/mbilski/hazelcast-go-client/security"
+	"github.com/mbilski/hazelcast-go-client/serialization"
+	"github.com/mbilski/hazelcast-go-client/serialization/spi"
+	"github.com/mbilski/hazelcast-go-client/test/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
