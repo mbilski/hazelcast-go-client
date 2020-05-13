@@ -208,7 +208,7 @@ func (is *invocationServiceImpl) handleResponse(response interface{}) {
 type invocationServiceImpl struct {
 	client            *HazelcastClient
 	nextCorrelation   int64
-	invocationsLock   sync.RWMutex
+	invocationsLock   sync.Mutex
 	invocations       map[int64]*invocation
 	invocationTimeout time.Duration
 	retryPause        time.Duration
