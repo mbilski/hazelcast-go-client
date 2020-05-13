@@ -139,13 +139,15 @@ func (is *invocationServiceImpl) invokeOnConnection(request *proto.ClientMessage
 func (is *invocationServiceImpl) cleanupConnection(connection *Connection, cause error) {
 	is.invocationsLock.Lock()
 	defer is.invocationsLock.Unlock()
-	for _, invocation := range is.invocations {
+	is.invocations.Range(func(key, value interface{}) bool {
+		invocation := value.(*invocation)
 		sentConnection, ok := invocation.sentConnection.Load().(*Connection)
 		if ok && sentConnection == connection {
 			is.unRegisterInvocationWithoutLock(invocation.request.Load().(*proto.ClientMessage).CorrelationID())
 			is.handleError(invocation, cause)
 		}
-	}
+		return false
+	})
 }
 
 func (is *invocationServiceImpl) removeEventHandler(correlationID int64) {
@@ -183,11 +185,13 @@ func (is *invocationServiceImpl) shutdown() {
 
 	is.invocationsLock.Lock()
 	defer is.invocationsLock.Unlock()
-	for correlationID, invocation := range is.invocations {
-		delete(is.invocations, correlationID)
-		invocation.complete(core.NewHazelcastClientNotActiveError("client is shutting down", nil))
-	}
 
+	is.invocations.Range(func(key, value interface{}) bool {
+		is.invocations.Delete(key)
+		invocation := value.(*invocation)
+		invocation.complete(core.NewHazelcastClientNotActiveError("client is shutting down", nil))
+		return true
+	})
 }
 
 func (is *invocationServiceImpl) onConnectionClosed(connection *Connection, cause error) {
@@ -210,7 +214,7 @@ type invocationServiceImpl struct {
 	client            *HazelcastClient
 	nextCorrelation   int64
 	invocationsLock   deadlock.Mutex
-	invocations       map[int64]*invocation
+	invocations       sync.Map
 	invocationTimeout time.Duration
 	retryPause        time.Duration
 	eventHandlersLock sync.RWMutex
@@ -224,7 +228,7 @@ type invocationServiceImpl struct {
 func newInvocationService(client *HazelcastClient) *invocationServiceImpl {
 	service := &invocationServiceImpl{
 		client:          client,
-		invocations:     make(map[int64]*invocation),
+		invocations:     sync.Map{},
 		eventHandlers:   make(map[int64]*invocation),
 		responseChannel: make(chan interface{}, 1),
 		logger:          client.logger,
@@ -354,7 +358,7 @@ func (is *invocationServiceImpl) registerInvocation(invocation *invocation) {
 		is.eventHandlers[correlationID] = invocation
 		is.eventHandlersLock.Unlock()
 	}
-	is.invocations[correlationID] = invocation
+	is.invocations.Store(correlationID, invocation)
 }
 
 func (is *invocationServiceImpl) unRegisterInvocation(correlationID int64) (*invocation, bool) {
@@ -363,9 +367,9 @@ func (is *invocationServiceImpl) unRegisterInvocation(correlationID int64) (*inv
 }
 
 func (is *invocationServiceImpl) unRegisterInvocationWithoutLock(correlationID int64) (*invocation, bool) {
-	if invocation, ok := is.invocations[correlationID]; ok {
-		delete(is.invocations, correlationID)
-		return invocation, ok
+	if in, ok := is.invocations.Load(correlationID); ok {
+		is.invocations.Delete(correlationID)
+		return in.(*invocation), ok
 	}
 	return nil, false
 }
