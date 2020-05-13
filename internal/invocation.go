@@ -354,15 +354,11 @@ func (is *invocationServiceImpl) registerInvocation(invocation *invocation) {
 		is.eventHandlers[correlationID] = invocation
 		is.eventHandlersLock.Unlock()
 	}
-	is.invocationsLock.Lock()
 	is.invocations[correlationID] = invocation
-	is.invocationsLock.Unlock()
 }
 
 func (is *invocationServiceImpl) unRegisterInvocation(correlationID int64) (*invocation, bool) {
-	is.invocationsLock.Lock()
 	in, ok := is.unRegisterInvocationWithoutLock(correlationID)
-	is.invocationsLock.Unlock()
 	return in, ok
 }
 
